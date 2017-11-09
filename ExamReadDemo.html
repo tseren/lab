@@ -1,0 +1,12 @@
+<input type=file onchange="showFileContents(event.target)">
+<pre>Select a file ... </pre>
+<script>
+    function showFileContents(input){
+        var reader = new FileReader();
+        reader.onload = function(){
+            document.querySelector("pre").textContent= reader.result;
+        };
+        reader.readAsText(input.files[0],"UTF-8");
+    }
+
+</script>

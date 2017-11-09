@@ -1,0 +1,16 @@
+  body {
+    font: 12pt/140% PragmataPro, monospace;
+    background: #999
+  }
+  #viewspace {
+    padding: 10px;
+    background: #000;
+    color: #8C8
+  }
+  #viewspace img {
+    display: block;
+    padding: 1px
+  }
+  #viewspace div {
+    padding: 1em 0 .5em 0
+  }

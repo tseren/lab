@@ -1,0 +1,11 @@
+<img> <input type=file onchange="showImage(event.target)">
+<script>
+
+    function showImage(input){
+        var reader = new FileReader();
+        reader.onload = function(){
+            document.querySelector("img").src = reader.result;
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
+</script>

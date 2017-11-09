@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="iso-8859-1">
+    <title> Select  Local File in Html 5</title>
+    <script type="text/javascript">
+    function selectPhoto(){
+        
+        var photo = document.getElementById('photo').files[0];
+        var imageType = /image.*/;
+        if(!photo.type.match(imageType))
+            alert('Please select a Photo');
+        else {        
+        var s = 'Name: ' + photo.name;
+        s +='<br>Type: ' + photo.type;
+        s +='<br>Size: ' + photo.size;
+        
+        document.getElementById('result1').innerHTML = s;
+            
+            //display image
+        document.getElementById('resultPreview1').innerHTML = '';    
+        var img = document.createElement("img");
+        img.file = photo;
+            document.getElementById('resultPreview1').appendChild(img);
+        var reader = new FileReader();
+            reader.onload = (function(aImg){
+                
+                return function(e){
+                    aImg.src = e.target.result;
+                };
+            })(img);
+        reader.readAsDataURL(photo);    
+        }
+        
+    }
+        
+    function selectPhotos(){
+        
+        var photos = document.getElementById('photos').files;
+        var s = 'Number of photos: ' + photos.length;
+        for(var i=0; i<photos.length; i++){
+            var photo = photos[i];
+            
+            s += '<br>Name: ' + photo.name;
+            s += '<br>Type: ' + photo.type;
+            s += '<br>Size: ' + photo.size;
+            s += '<br>==================================';
+        
+        //display image
+          
+        var img = document.createElement("img");
+        img.file = photo;
+            document.getElementById('resultPreview2').appendChild(img);
+        var reader = new FileReader();
+            reader.onload = (function(aImg){
+                
+                return function(e){
+                    aImg.src = e.target.result;
+                };
+            })(img);
+        reader.readAsDataURL(photo);    
+            
+        }
+        
+        document.getElementById('result2').innerHTML =s;
+        
+    }    
+        
+        
+    </script>
+</head>
+    <body>
+    
+        <fieldset>
+            <legend> Single File</legend>
+            <form>
+                Photo <input type="file" id="photo" onchange="selectPhoto()">
+                      <br>
+                       <div id="result1"> </div>
+                        <div id="resultPreview1"></div>
+                
+            </form>       
+        </fieldset>
+        
+        <fieldset>
+            <legend> Multiple Files</legend>
+            <form>
+                Photo <input type="file" id="photos" onchange="selectPhotos()" multiple = "multiple">
+                      <br>
+                       <div id="result2"> </div>
+                        <div id="resultPreview2"></div>
+                
+            </form>       
+        </fieldset>
+        
+    
+    </body>
+    
+</html>

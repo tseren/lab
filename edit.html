@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+    <title> Select  Local File in Html 5</title>
+    <script type="text/javascript">
+    function selectPhoto(){
+        
+        var photo = document.getElementById('photo').files[0];
+        var imageType = /image.*/;
+        if(!photo.type.match(imageType))
+            alert('Please select a Photo');
+        else {        
+        var s = 'Name: ' + photo.name;
+        s +='<br>Type: ' + photo.type;
+        s +='<br>Size: ' + photo.size;
+        
+        document.getElementById('result1').innerHTML = s;
+            
+            //display image
+        document.getElementById('resultPreview1').innerHTML = '';    
+        var img = document.createElement("img");
+        img.file = photo;
+            document.getElementById('resultPreview1').appendChild(img);
+        var reader = new FileReader();
+            reader.onload = (function(aImg){
+                
+                return function(e){
+                    aImg.src = e.target.result;
+                };
+            })(img);
+        reader.readAsDataURL(photo);    
+        }
+        
+    }
+    
+        
+    </script>
+</head>
+    <body>
+    
+        <fieldset>
+            <legend> Single File</legend>
+            <form>
+                Photo <input type="file" id="photo" onchange="selectPhoto()">
+                      <br>
+                       <div id="result1"> </div>
+                        <div id="resultPreview1"></div>
+                
+            </form>       
+        </fieldset>     
+    
+    </body>
+    
+</html>
