@@ -1,3 +1,8 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> Rotate</title>
+
 <img> <input type=file onchange="showRotateImage(event.target)">
 <script type="text/javascript">
 	
@@ -6,12 +11,19 @@
 		var reader = new FileReader();
 		reader.onload = function(){
 			//Using https://github.com/jseidelin/exif-js/ ...
-
+         document.write("fdsafdsa");
 			var orientation = readEXIFTags(reader.result).Orientation;
-			var rotation = [0, 0, 0, 180, 180, 90, 90,-90, -90];
-			document.querySelector("img").style.transform = "rotate(" + (rotation[orientation]|| 0)+ "deg)";
+			var rotation = [0, 0, 0, 180, 180, 90, 90,-90, 90];
+			document.querySelector("img").style.transform="rotate(" + (rotation[orientation]|| 0)+ "deg)";
 		};
 
 		reader.readAsArrayBuffer(input.files[0]);
 	}
 </script>
+
+</head>
+
+<body>
+
+</body>
+</html>
